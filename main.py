@@ -16,6 +16,10 @@ if __name__ =='__main__':
         response = gpt.call_chat(texte)
         await bot.send_message(ctx, response ,False)
 
-
+    @bot.command()
+    async def img_gpt(ctx, *args):
+        texte = ' '.join(args)
+        response = gpt.call_image(texte)
+        await bot.send_message(ctx, response ,False)
 
     bot.run(os.getenv("discord_token"))

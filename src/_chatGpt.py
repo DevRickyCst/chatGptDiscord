@@ -8,4 +8,7 @@ class Gpt():
     def call_chat(self, content):
         chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": content}])
         return chat_completion.choices[0].message.content 
-    
+
+    def call_image(self, content):
+        response = openai.Image.create(prompt=content, n=1, size="1024x1024")
+        return response['data'][0]['url']
