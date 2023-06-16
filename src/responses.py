@@ -1,4 +1,4 @@
-from src.chatgpt import Gpt
+from chatgpt import Gpt
 import os
 
 def handle_response(message):
