@@ -21,5 +21,12 @@ if __name__ =='__main__':
         texte = ' '.join(args)
         response = gpt.call_image(texte)
         await bot.send_message(ctx, response ,False)
+    
+    @bot.command()
+    async def trad_gpt(ctx, *args):
+        lang = args[0]
+        texte = ' '.join(args[1:])
+        response = gpt.call_traduction(lang,texte)
+        await bot.send_message(ctx, response ,False)
 
     bot.run(os.getenv("discord_token"))
