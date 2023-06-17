@@ -13,7 +13,13 @@ if __name__ =='__main__':
     @bot.command()
     async def chat_gpt(ctx, *args):
         texte = ' '.join(args)
-        response = gpt.call_gpt(texte)
+        response = gpt.call_chat(texte)
+        await bot.send_message(ctx, response ,False)
+
+    @bot.command()
+    async def img_gpt(ctx, *args):
+        texte = ' '.join(args)
+        response = gpt.call_image(texte)
         await bot.send_message(ctx, response ,False)
 
     bot.run(os.getenv("discord_token"))
