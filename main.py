@@ -1,9 +1,9 @@
 from src._botDiscord import BotDiscord
 import os
-
+from dotenv import load_dotenv
 from src._chatGpt import Gpt
 
-
+load_dotenv()
 if __name__ =='__main__':
 
     bot = BotDiscord()
