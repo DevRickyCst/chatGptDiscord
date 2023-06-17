@@ -1,9 +1,9 @@
 from src._botDiscord import BotDiscord
 import os
-from dotenv import load_dotenv
+
 from src._chatGpt import Gpt
 
-load_dotenv()
+
 if __name__ =='__main__':
 
     bot = BotDiscord()
@@ -20,6 +20,13 @@ if __name__ =='__main__':
     async def img_gpt(ctx, *args):
         texte = ' '.join(args)
         response = gpt.call_image(texte)
+        await bot.send_message(ctx, response ,False)
+    
+    @bot.command()
+    async def trad_gpt(ctx, *args):
+        lang = args[0]
+        texte = ' '.join(args[:1])
+        response = gpt.call_traduction(lang,texte)
         await bot.send_message(ctx, response ,False)
 
     bot.run(os.getenv("discord_token"))

@@ -12,3 +12,10 @@ class Gpt():
     def call_image(self, content):
         response = openai.Image.create(prompt=content, n=1, size="1024x1024")
         return response['data'][0]['url']
+    
+    def call_traduction(self, lang, content):
+        response = openai.Completion.create(
+                    model="gpt-3.5-turbo",
+                    prompt="Translate the following text in {lang} : {content}".format(lang = lang, content = content)
+                    )
+        return response.choices[0].text
