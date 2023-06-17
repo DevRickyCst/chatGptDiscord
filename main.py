@@ -25,7 +25,7 @@ if __name__ =='__main__':
     @bot.command()
     async def trad_gpt(ctx, *args):
         lang = args[0]
-        texte = ' '.join(args[:1])
+        texte = ' '.join(args[1:])
         response = gpt.call_traduction(lang,texte)
         await bot.send_message(ctx, response ,False)
 

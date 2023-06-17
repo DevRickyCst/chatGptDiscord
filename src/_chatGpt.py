@@ -14,8 +14,5 @@ class Gpt():
         return response['data'][0]['url']
     
     def call_traduction(self, lang, content):
-        response = openai.Completion.create(
-                    model="gpt-3.5-turbo",
-                    prompt="Translate the following text in {lang} : {content}".format(lang = lang, content = content)
-                    )
-        return response.choices[0].text
+        chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Bonjour Gpt peux tu me tranduire en {lang} la phrase suivante : {content}".format(lang = lang, content = content)}])
+        return chat_completion.choices[0].message.content 
