@@ -29,4 +29,11 @@ if __name__ =='__main__':
         response = gpt.call_traduction(lang,texte)
         await bot.send_message(ctx, response ,False)
 
+    @bot.command()
+    async def parle(ctx, *args):
+        channel = ctx.author.voice.channel
+        await channel.connect()
+
+
+
     bot.run(os.getenv("discord_token"))
