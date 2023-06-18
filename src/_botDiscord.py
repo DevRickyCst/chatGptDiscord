@@ -1,5 +1,6 @@
 import os
 import discord
+import asyncio
 from discord.ext import commands
 
 #Need it to start the bot
@@ -21,11 +22,17 @@ class BotDiscord(commands.Bot):
         except Exception as e:
             print(e)
 
-    async def play_audio(self, ctx):
+    async def play_audio(self, ctx, audio):
         print('in play audio')
         FFMPEG_OPTIONS = {'options': '-vn'}
         try :
-            source = await discord.FFmpegOpusAudio.from_probe("downloads/bonjour.mp3", **FFMPEG_OPTIONS)
-            ctx.voice_client.play(source)
+            await ctx.autor.voice.channel.connect()
+            source = discord.FFmpegOpusAudio(audio, pipe=True, **FFMPEG_OPTIONS)
+            voice_client = ctx.voice_client
+            voice_client.play(source)
+            while voice_client.is_playing():
+                await asyncio.sleep(1)
+            await voice_client.disconnect()
+
         except Exception as e:
             print(e)
