@@ -32,7 +32,9 @@ if __name__ =='__main__':
     @bot.command()
     async def parle(ctx, *args):
         channel = ctx.author.voice.channel
-        await channel.connect()
+        if channel!=None:
+            await channel.connect()
+            await bot.play_audio(ctx)
 
 
 

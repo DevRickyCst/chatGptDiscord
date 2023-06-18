@@ -20,3 +20,12 @@ class BotDiscord(commands.Bot):
             await message.author.send(response) if is_private else await message.channel.send(response)
         except Exception as e:
             print(e)
+
+    async def play_audio(self, ctx):
+        print('in play audio')
+        FFMPEG_OPTIONS = {'options': '-vn'}
+        try :
+            source = await discord.FFmpegOpusAudio.from_probe("downloads/bonjour.mp3", **FFMPEG_OPTIONS)
+            ctx.voice_client.play(source)
+        except Exception as e:
+            print(e)
