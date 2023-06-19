@@ -20,7 +20,7 @@ activate_virtual_environment() {
     # Votre code à exécuter dans l'environnement virtuel
 }
 
-if [[ ! -d "$DIRECTORY" ]]
+if [[ ! -d "venv" ]]
 then
     echo Creating virtual environnement
     python3 -m venv venv
@@ -28,5 +28,7 @@ else
     echo Virtual environnement already existed
 fi
 activate_virtual_environment
+
+pip uninstall -r requirements.txt
 echo pip install -r requirements.txt
 pip install -r requirements.txt
