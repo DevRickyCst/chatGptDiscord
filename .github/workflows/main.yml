@@ -28,4 +28,3 @@ jobs:
           make refresh
           source venv/bin/activate
           make run
-
