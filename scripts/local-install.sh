@@ -32,10 +32,3 @@ activate_virtual_environment
 pip uninstall -r requirements.txt
 echo pip install -r requirements.txt
 pip install -r requirements.txt
-
-
-
-
-
-tmux 
-pkill -f tmux
