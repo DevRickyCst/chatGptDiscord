@@ -20,7 +20,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    cd discordGptBot
+                    ls
+                    cd chatGptDiscord
                     make install
                     make refresh
                     source venv/bin/activate
