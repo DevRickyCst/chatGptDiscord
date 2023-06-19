@@ -22,4 +22,10 @@ jobs:
 
       - name: Run bash script on the server
         run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "bash -s" < 
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
+          cd discordGptBot
+          make install
+          make refresh
+          source venv/bin/activate
+          make run
+
