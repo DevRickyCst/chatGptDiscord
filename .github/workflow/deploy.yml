@@ -3,7 +3,7 @@ name: CI/CD on push to production
 on:
   push:
     branches:
-      - prod
+      - feature/add-ci-cd
 
 jobs:
   deploy:
