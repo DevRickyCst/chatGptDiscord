@@ -1,8 +1,7 @@
 from src._botDiscord import BotDiscord
 import os
 from dotenv import load_dotenv
-from gtts import gTTS
-from io import BytesIO
+from src._googleTTS import GoogleTTS as gTTS
 from src._chatGpt import Gpt
 
 load_dotenv()
@@ -35,11 +34,7 @@ if __name__ =='__main__':
     async def parle(ctx, *args):
         channel = ctx.author.voice.channel if ctx.author.voice!=None else None
         message = ' '.join(args) if len(args)>=1 else 'SMAB'
-        if channel!=None:
-            audio_fo = BytesIO()
-            audio = gTTS(text=message, lang="fr", slow=False)
-            audio.write_to_fp(audio_fo)
-            audio_fo.seek(0)
-            await bot.play_audio(ctx, audio_fo)
+        if channel!=None and ctx.voice_client==None:
+            await bot.play_audio(gTTS.get_audio_fp(message), channel)
 
     bot.run(os.getenv("discord_token"))
