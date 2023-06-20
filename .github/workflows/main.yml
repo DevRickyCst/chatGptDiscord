@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    ps -aux | grep python3 | xargs sudo kill -9
+                    killall -9 "python3 main.py"
                     ls
                     cd chatGptDiscord
                     make install
