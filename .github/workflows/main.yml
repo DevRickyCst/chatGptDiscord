@@ -26,6 +26,6 @@ jobs:
                     make refresh
                     tmux
                     source venv/bin/activate
-                    nohub make run
+                    nohub python3 main.py
 
 
