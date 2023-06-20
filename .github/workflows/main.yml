@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
 
     steps:
       - name: Checkout code
@@ -20,10 +21,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+                    ps -aux | grep git_dis+ | grep python3 | awk '{print $2}' | xargs sudo kill
                     ls
                     cd chatGptDiscord
                     make install
                     make refresh
                     source venv/bin/activate
-                    nohup python3 main.py
+                    python3 main.py
 
