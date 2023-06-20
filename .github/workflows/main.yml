@@ -24,7 +24,6 @@ jobs:
                     cd chatGptDiscord
                     make install
                     make refresh
-                    tmux
                     source venv/bin/activate
                     nohub python3 main.py
 
