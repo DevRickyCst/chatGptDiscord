@@ -26,6 +26,4 @@ jobs:
                     make refresh
                     source venv/bin/activate
                     nohup python3 main.py
-                    exit(1)
-
 
