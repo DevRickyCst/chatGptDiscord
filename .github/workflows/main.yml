@@ -26,6 +26,6 @@ jobs:
                     make refresh
                     tmux
                     source venv/bin/activate
-                    make run
+                    nohub make run
 
 
