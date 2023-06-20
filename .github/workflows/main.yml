@@ -21,7 +21,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    killall -9 python3
+                    discord_pid=$(ps -aux | grep git_dis+ | grep python3 | awk '{print $2}')
+                    kill -9 $discord_pid
                     ls
                     cd chatGptDiscord
                     make install
