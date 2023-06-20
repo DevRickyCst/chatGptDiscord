@@ -21,8 +21,10 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    echo "killall -9 python3"
-                    killall -9 python3
+                    echo "discord_pid=$(ps -aux | grep git_dis+ | grep python3 | awk '{print $2}')"
+                    discord_pid=$(ps -aux | grep git_dis+ | grep python3 | awk '{print $2}')
+                    echo "kill $discord_pid"
+                    kill $discord_pid
                     echo "ls"
                     ls
                     echo "cd chatGptDiscord"
