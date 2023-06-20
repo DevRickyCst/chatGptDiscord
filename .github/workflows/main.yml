@@ -24,6 +24,7 @@ jobs:
                     cd chatGptDiscord
                     make install
                     make refresh
+                    tmux
                     source venv/bin/activate
                     make run
 
