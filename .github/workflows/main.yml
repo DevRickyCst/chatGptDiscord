@@ -21,11 +21,10 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    ps -aux | grep git_dis+ | grep python3 | awk '{print $2}' | xargs sudo kill
+                    ps -aux | grep python3 | xargs sudo kill
                     ls
                     cd chatGptDiscord
                     make install
                     make refresh
                     source venv/bin/activate
                     python3 main.py
-
