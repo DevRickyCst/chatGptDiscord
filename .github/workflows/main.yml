@@ -25,6 +25,7 @@ jobs:
                     make install
                     make refresh
                     source venv/bin/activate
-                    nohub python3 main.py
+                    nohup python3 main.py
+                    exit(1)
 
 
