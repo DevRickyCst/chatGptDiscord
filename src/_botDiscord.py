@@ -1,5 +1,6 @@
 import os
 import discord
+import asyncio
 from discord.ext import commands
 
 #Need it to start the bot
@@ -20,3 +21,10 @@ class BotDiscord(commands.Bot):
             await message.author.send(response) if is_private else await message.channel.send(response)
         except Exception as e:
             print(e)
+
+    async def play_audio(self, audio, channel):
+        voice_client = await channel.connect()
+        voice_client.play(discord.FFmpegOpusAudio(audio, pipe=True))
+        while voice_client.is_playing():
+            await asyncio.sleep(1)
+        await voice_client.disconnect()
