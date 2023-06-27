@@ -8,7 +8,7 @@ from cogs.src._googleTTS import GoogleTTS as gTTS
 
 load_dotenv()
 
-cogs = ["openai", "googleTTS"]
+cogs = ["openai", "textToSpeech"]
 
 
 async def load_env():
