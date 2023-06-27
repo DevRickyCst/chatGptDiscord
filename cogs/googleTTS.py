@@ -7,7 +7,7 @@ class openai(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def chat_gpt(self, ctx, *args):
+    async def parle(self, ctx, *args):
         channel = ctx.author.voice.channel if ctx.author.voice != None else None
         message = " ".join(args) if len(args) >= 1 else "SMAB"
         if channel != None and ctx.voice_client == None:
