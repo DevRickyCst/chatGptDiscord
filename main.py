@@ -2,12 +2,10 @@ import os
 
 from dotenv import load_dotenv
 
+from cogs.src._botDiscord import BotDiscord
+
 from cogs.openai import openai
 from cogs.textToSpeech import textToSpeech
-
-from cogs.src._botDiscord import BotDiscord
-from cogs.src._chatGpt import Gpt
-from cogs.src._googleTTS import GoogleTTS as gTTS
 
 load_dotenv()
 
@@ -22,8 +20,6 @@ async def load_env():
 if __name__ == "__main__":
 
     bot = BotDiscord()
-    gpt = Gpt(os.getenv("openai_api_key"))
-
     cogs = [openai(bot, os.getenv("openai_api_key")), textToSpeech(bot)]
 
     @bot.event
