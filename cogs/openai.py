@@ -6,7 +6,7 @@ from cogs.src._chatGpt import Gpt
 class openai(commands.Cog):
     def __init__(self, bot, api_key):
         self.bot = bot
-        self.Gpt = Gpt(api_key)
+        self.gpt = Gpt(api_key)
 
     @commands.command()
     async def chat_gpt(self, ctx, *args):
