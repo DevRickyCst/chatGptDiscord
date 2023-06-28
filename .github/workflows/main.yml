@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - prod
+      - add_docker
 
 jobs:
   deploy:
@@ -21,17 +22,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    echo "killall -9 python3"
-                    killall -9 python3
-                    echo "ls"
-                    ls
-                    echo "cd chatGptDiscord"
-                    cd chatGptDiscord
-                    echo "install"
-                    make install
-                    echo "refresh"
-                    make refresh
-                    echo "venv/bin/activate"
-                    source venv/bin/activate
-                    echo "main.py"
-                    python3 main.py
+                    sudo docker pull gcr.io/bot-discord-390015/discord
+                    sudo docker run gcr.io/bot-discord-390015/discord
