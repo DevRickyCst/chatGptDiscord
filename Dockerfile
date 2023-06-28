@@ -1,11 +1,11 @@
-FROM python:3.10
+FROM python:3.9
 
 WORKDIR /Documents/projetGit/discordGptBot
 
 COPY . .
 
-RUN sudo apt-get update && apt-get install -y
-RUN sudo apt-get install ffmpeg
+RUN apt-get update && apt-get install -y
+RUN apt-get install ffmpeg -y
 
 RUN pip install -r requirements.txt
 

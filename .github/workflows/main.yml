@@ -3,7 +3,7 @@ name: CI/CD on push to production
 on:
   push:
     branches:
-      - add_docker
+      - prod
 
 jobs:
   deploy:
@@ -21,6 +21,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    sudo apt-get install ffmpeg
                     sudo docker pull gcr.io/bot-discord-390015/discord
                     sudo docker run gcr.io/bot-discord-390015/discord
