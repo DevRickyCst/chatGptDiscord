@@ -2,11 +2,12 @@ clean:
 	./scripts/clean_local.sh
 
 install:
-	./scripts/local-install.sh
+	docker build -t discord .
 
 refresh:
 	git checkout prod
 	git pull
 
 run:
-	python3 main.py
+	docker run discord
+

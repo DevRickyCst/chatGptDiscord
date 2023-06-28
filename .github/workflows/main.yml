@@ -14,6 +14,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.3.0
+        with:
+          project_id: bot-discord-390015
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker
+        run: |
+          echo ${{ secrets.GCP_SA_KEY }} | base64 --decode > key.json
+          gcloud auth activate-service-account --key-file=key.json
+          gcloud auth configure-docker
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t gcr.io/bot-discord-390015/discord .
+          docker push gcr.io/bot-discord-390015/discord
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
@@ -21,17 +38,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                    echo "killall -9 python3"
-                    killall -9 python3
-                    echo "ls"
-                    ls
-                    echo "cd chatGptDiscord"
-                    cd chatGptDiscord
-                    echo "install"
-                    make install
-                    echo "refresh"
-                    make refresh
-                    echo "venv/bin/activate"
-                    source venv/bin/activate
-                    echo "main.py"
-                    python3 main.py
+                    sudo docker pull gcr.io/bot-discord-390015/discord
+                    sudo docker run gcr.io/bot-discord-390015/discord
